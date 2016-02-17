@@ -288,8 +288,9 @@ def register_subcommand(subparsers, name, function):
         pass
 
     # Pad out the default list with None
-    defaults = ((Nothing(),) * (len(args.args) - len(args.defaults or tuple()))
-                + (args.defaults or tuple()))
+    defaults = ((
+        Nothing(),) * (len(args.args) - len(args.defaults or tuple())) +
+                (args.defaults or tuple()))
 
     used_short_args = set(['-h'])
 
@@ -395,7 +396,8 @@ def load_rc(program_name):
     if path.exists(py_filename):
         sys.path.append(hivemind_config_dir)
         try:
-            config = importlib.import_module('%s.%s' % (program_name, 'config'))
+            config = importlib.import_module(
+                '%s.%s' % (program_name, 'config'))
         except ImportError:
             execfile(py_filename, globals())
         try:
